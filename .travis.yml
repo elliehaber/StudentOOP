@@ -10,11 +10,7 @@ script:
 notifications:
   email:
     recipients:
-      - your_TAs_email@nyu.edu
-    on_success: always
-    on_failure: never
-
-    recipients:
-      - your_email@nyu.edu
+      - gl1776@nyu.edu
+      - elh391@nyu.edu
     on_success: always
     on_failure: always  
