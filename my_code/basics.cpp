@@ -100,7 +100,7 @@ int sum2(int n) {
 /*
  * say() is built for you!
  * */
-void say(std::string s) {
+void say(string s) {
     cout << s << endl;
 }
 
@@ -108,7 +108,7 @@ void say(std::string s) {
 /*
  * Use a ranged for to pull a string apart into its bits.
  * */
-void pull_apart_string(std::string s) {
+void pull_apart_string(string s) {
     for (char c: s) {
         cout << c << ' ';
     }
