@@ -45,41 +45,56 @@ void print_vector(const vector<int>& v) {
  * Print a pair of coordinates x = 9, y = 2.
  * */
 void print_coords(coord pos) {
+    cout << "x = " << pos.x << "," << "y = " << pos.y << endl;
 }
 
 /*
  * Square an integer.
  * */
 int square(int n) {
-    return 100;
+    return n * n;
 }
 
 /*
  * Square a double.
  * */
 double square(double d) {
-    return 6.25;
+    return d * d;
 }
 
 /*
  * Get the absolute value of a number.
  * */
 int my_abs(int n) {
-    return 10;
+    if (n < 0) {
+        return -n;
+    }
+    else {
+        return n;
+    }
 }
 
 /*
  * Sum from 0 to n using a `while` loop.
  * */
 int sum(int n) {
-    return 45;
+    int i = 0;
+    int res = 0;
+    while (i < n) {
+        res += i;
+    }
+    return res;
 }
 
 /*
- * Sum from 0 to n using a `while` loop.
+ * Sum from 0 to n using a `for` loop.
  * */
 int sum2(int n) {
-    return 45;
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        res += i;
+    }
+    return res;
 }
 
 /*
@@ -94,4 +109,8 @@ void say(std::string s) {
  * Use a ranged for to pull a string apart into its bits.
  * */
 void pull_apart_string(std::string s) {
+    for (char c: s) {
+        cout << c << ' ';
+    }
+    cout << endl;
 }
