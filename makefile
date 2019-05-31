@@ -15,7 +15,7 @@ $(TEST_DIR)/test_basics: $(STUDENT_DIR)/basics.cpp $(TEST_DIR)/test_basics.cpp
 
 
 # basics not ready to be tested yet!
-tests: test_hello # basics
+tests: test_hello  test_basics
 	tests/test_hello
 	tests/test_basics
 
