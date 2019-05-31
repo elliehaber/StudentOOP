@@ -45,7 +45,7 @@ void print_vector(const vector<int>& v) {
  * Print a pair of coordinates x = 9, y = 2.
  * */
 void print_coords(coord pos) {
-    cout << "x = " << pos.x << ", " << "y = " << pos.y << endl;
+    cout << "x = " << pos.x << ", " << " y = " << pos.y << endl;
 }
 
 /*
