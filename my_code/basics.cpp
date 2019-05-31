@@ -52,14 +52,14 @@ void print_coords(coord pos) {
  * Square an integer.
  * */
 int square(int n) {
-    return int(n * n);
+    return n * n;
 }
 
 /*
  * Square a double.
  * */
 double square(double d) {
-    return double(d * d);
+    return d * d;
 }
 
 /*
