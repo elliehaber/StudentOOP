@@ -14,7 +14,7 @@ void inc_with_pointer(int* iptr) {
 
 
 void inc_with_reference(int& n) {
-    *n++;
+    n++;
 }
 
 
