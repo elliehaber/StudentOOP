@@ -56,7 +56,7 @@ void printTAs(vector<Student*> students) {
             cout << student -> name << " has no ta\n";
         }
         else {
-            cout << student -> name << " has ta " << student -> ta -> name >> endl;
+            cout << student -> name << " has ta " << student -> ta -> name;
         }
     }
 }
