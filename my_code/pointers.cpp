@@ -20,7 +20,7 @@ void inc_with_reference(int& n) {
 
 Thing** create_array_of_things(int n) {
     for (int i = 0; i < n; i++) {
-        Thing* things[i] = new Thing(i);
+        Thing *things[i] = new Thing(i);
     }
     return nullptr;
 }
