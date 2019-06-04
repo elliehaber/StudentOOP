@@ -23,7 +23,7 @@ Thing** create_array_of_things(int n) {
     for (int i = 0; i < n; i++) {
         thing[i] = new Thing(i);
     }
-    return nullptr;
+    return thing;
 }
 
 void print_all_things(Thing** things, int n) {
