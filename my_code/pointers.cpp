@@ -42,7 +42,7 @@ void delete_all_things(Thing** things, int n) {
     for (int i = 0; i < n; i++) {
         delete things[i];
     }
-    delete things[];
+    delete [] things;
 }
 
 
