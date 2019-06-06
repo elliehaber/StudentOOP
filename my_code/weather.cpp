@@ -7,7 +7,7 @@ using namespace std;
 /*
  * output for GPS coordinates
  * */
-ostream& operator<<(std::ostream& os, const GPS& gps){
+ostream& operator<<(ostream& os, const GPS& gps){
     os << "latitude: " << gps.latitude << "; longitude: " << gps.longitude;
     return os;
 }
