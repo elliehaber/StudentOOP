@@ -21,7 +21,7 @@ int main() {
     //{
     //    cout << "c1 = " << c1 << endl;
    // }
-    Complex c1 = (23, 12);
+    Complex c1 = (23.1, 12.2);
     Complex c2(43.2, 58.9);
     assert(c2.get_real() == 43.2);
     assert(c2.get_imag() == 58.9);
