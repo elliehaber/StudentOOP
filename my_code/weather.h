@@ -37,7 +37,11 @@ private:
     char* image_buf;
     void copy_fields(const Image& img2);
 };
-    
+
+class Gif : public Image {
+};
+
+
 struct GPS {
     double latitude;
     double longitude;

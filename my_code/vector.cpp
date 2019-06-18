@@ -67,10 +67,6 @@ bool operator==(MyVec& v1, MyVec& v2) {
  * Puts an element at the back of a vector.n
  * */
 void MyVec::push_back(int val) {
-    if (capacity == 0) {
-        ++capacity;
-        data = new int[capacity];
-    }
     if(sz == capacity){
         int* old_data = data;
         data = new int[2*capacity];
