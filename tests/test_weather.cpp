@@ -1,8 +1,10 @@
 #include <cassert>
 #include <vector>
+#include <string>
 #include <iostream>
 #include <fstream>
-#include "weather.h"
+#include "../my_code/date.h"
+#include "../my_code/weather.h"
 
 using namespace std;
 
@@ -43,7 +45,7 @@ int main() {
         // make_images2(img);
     }
     exit(0);
-/**
+
     Date date1 = Date(1, 1, 2019);
     WReading test_temps = WReading(date1, 0, 50, 10);
     int wr_size = sizeof(test_temps);
@@ -64,6 +66,6 @@ int main() {
 
     get_wreadings(filenm, irkutsk);
 
-//    cout << irkutsk << endl;
- **/
+    cout << irkutsk << endl;
+
 }

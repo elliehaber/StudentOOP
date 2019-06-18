@@ -5,8 +5,8 @@
 //  Created by Ellie Haber on 6/7/19.
 //
 
-#ifndef date_h
-#define date_h
+#ifndef DATE_H
+#define DATE_H
 
 #include <iostream>
 

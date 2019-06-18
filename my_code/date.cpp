@@ -4,9 +4,8 @@
 //
 //  Created by Ellie Haber on 6/7/19.
 //
-
-#include "date.h"
 #include <iostream>
+#include "date.h"
 
 using namespace std;
 

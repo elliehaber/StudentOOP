@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include "date.h"
 #include "weather.h"
 
 using namespace std;
@@ -20,10 +22,10 @@ Image::Image(const Image& img2) {
     width = img2.width;
     height = img2.height;
     filename = img2.filename;
-    char* img_buf = new char[img2.image_sz()];
+    image_buf = new char[img2.image_sz()];
 
     for (int i = 0; i < img2.image_sz(); i++) {
-        img_buf[i] = img2.image_buf[i];
+        image_buf[i] = img2.image_buf[i];
     }
     
 }
@@ -31,15 +33,16 @@ Image::Image(const Image& img2) {
 Image::~Image() {
     if (image_buf != nullptr) {
         delete image_buf;
+    }
 }
 
 Image& Image::operator=(const Image& img2) {
     if (&img2 != this) {
         delete image_buf;
         
-        char* img_buf = new char[img2.image_sz()];
+        image_buf = new char[img2.image_sz()];
         for (int i = 0; i < img2.image_sz(); i++) {
-            img_buf[i] = img2.image_buf[i];
+            image_buf[i] = img2.image_buf[i];
         }
     }
     return *this;
@@ -130,15 +133,6 @@ ostream& operator<<(ostream& os, const Weather& w){
     for (WReading reading: w.wreadings) {
         os << reading << endl;
     }
-    return os;
-}
-
-Date::Date(int d, int m, int y) :
-day(d), month(m), year(y) {
-}
-
-ostream& operator<<(ostream& os, const Date& date){
-    os <<"month: " << date.month << ", day: "<< date.day << ", year: " << date.year;
     return os;
 }
 
