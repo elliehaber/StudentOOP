@@ -80,9 +80,9 @@ void MyVec::push_back(int val) {
             data[i] = old_data[i];
         }
         delete [] old_data;
+    }
     data[sz] = val;
     ++sz;
-    }
 }
 
 /*
