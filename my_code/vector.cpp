@@ -12,7 +12,7 @@ void print_vector(const MyVec& v) {
 
 MyVec::MyVec() {
     sz = 0;
-    capacity = 1;
+    capacity = 0;
     data = new int[sz];
 }
 
@@ -37,7 +37,8 @@ MyVec& MyVec::operator=(const MyVec& v2) {
         sz = v2.sz;
         capacity = v2.capacity;
         
-        data = new int[sz];
+        data = new int[capacity];
+        
         for(int i= 0; i < v2.size(); i++) {
             data[i] = v2.data[i];
         }
@@ -67,6 +68,10 @@ bool operator==(MyVec& v1, MyVec& v2) {
  * Puts an element at the back of a vector.n
  * */
 void MyVec::push_back(int val) {
+    if(capacity == 0){
+        data = new int[++capacity];
+    }
+    
     if(sz == capacity){
         int* old_data = data;
         data = new int[2*capacity];
@@ -77,8 +82,7 @@ void MyVec::push_back(int val) {
         }
         delete [] old_data;
     }
-    data[sz] = val;
-    ++sz;
+    data[sz++] = val;
 }
 
 /*
