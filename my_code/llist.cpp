@@ -36,6 +36,9 @@ void add_at_end(Node*& head, int d) {
 void print_list(ostream& os, const Node* head) {
     os << head;
     if (head) print_list(os, head->next);
+    else {
+        cout << endl;
+    }
 }
 
 /*
@@ -91,13 +94,12 @@ Node* reverse(Node* curr, Node* new_next){
 Node* duplicate(Node* head) {
     if(head == nullptr) return nullptr;
     return new Node(head->data, duplicate(head->next));
-        
+    
 }
 
 Node* join(Node*& list1, Node* list2){
     Node* last_nd = last(list1);
     last_nd->next = list2;
     return list1;
-    
 }
 
