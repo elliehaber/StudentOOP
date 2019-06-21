@@ -9,16 +9,28 @@
 using namespace std;
 
 void get_wreadings(string filenm, Weather& w) {
+    Image* base = new Image(100, 100, "base.img");
+    Gif* gif = new Gif(100, 100, "file.gif");
+    Jpeg* jpeg = new Jpeg(100, 100, "file.jpg");
+    Png* png = new Png(100, 100, "base.png");
+
+    
+
+
+    vector<Image*> images = {base, gif, jpeg, png, nullptr};
+
     ifstream rfile(filenm);
     if (!rfile) {
         cout << "Could not read input file: " << filenm << endl;
         exit(1);
     }
     int m, d, y;
+    int i = 0;
     double temp, hum, ws;
     while (rfile >> m >> d >> y >> temp >> hum >> ws) {
-        WReading wr = WReading(Date(d, m, y), temp, hum, ws);
+        WReading wr = WReading(Date(d, m, y), temp, hum, ws, images[i]);
         w.add_reading(wr);
+        i = (i+1) % images.size();
     }
     rfile.close();
 }
@@ -38,7 +50,7 @@ void make_images2(Image& img1) {
 
 
 int main() {
-    string fnm = "happy.gif!";
+    /*string fnm = "happy.gif!";
     Image img = Image(100, 100, fnm);
     for (int i = 1; i < 100; i++) {
         // make_images1(img);
@@ -57,7 +69,7 @@ int main() {
     test_temps = WReading(Date(1, 1, 2019), 100, 50, 10);
     freezingF = test_temps.get_tempF();
     assert(freezingF == 212.0);
-
+    */
     Weather irkutsk = Weather("Irkutsk", GPS(46.3, 67.2));
 
     string filenm;
@@ -67,5 +79,6 @@ int main() {
     get_wreadings(filenm, irkutsk);
 
     cout << irkutsk << endl;
+    irkutsk.display_images();
 
 }

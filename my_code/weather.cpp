@@ -19,10 +19,7 @@ Image::Image(int w, int h, std::string flnm)
 
 // copy constructor:
 Image::Image(const Image& img2) {
-    width = img2.width;
-    height = img2.height;
-    filename = img2.filename;
-    image_buf = new char[img2.image_sz()];
+    copy_fields(img2);
 
     for (int i = 0; i < img2.image_sz(); i++) {
         image_buf[i] = img2.image_buf[i];
@@ -32,7 +29,7 @@ Image::Image(const Image& img2) {
 
 Image::~Image() {
     if (image_buf != nullptr) {
-        delete image_buf;
+      delete image_buf;
     }
 }
 
@@ -40,7 +37,7 @@ Image& Image::operator=(const Image& img2) {
     if (&img2 != this) {
         delete image_buf;
         
-        image_buf = new char[img2.image_sz()];
+        copy_fields(img2);
         for (int i = 0; i < img2.image_sz(); i++) {
             image_buf[i] = img2.image_buf[i];
         }
@@ -54,6 +51,10 @@ int Image::image_sz() const{
 
 
 void Image::copy_fields(const Image& img2) {
+    width = img2.width;
+    height = img2.height;
+    filename = img2.filename;
+    image_buf = new char[image_sz()];
 }
 
 
@@ -61,15 +62,35 @@ void Image::copy_fields(const Image& img2) {
  * Setting `display() = 0` here makes this an abstract
  * class that can't be implemented.
  * */
-string Image::display(std::string s) {
-    return "Displaying image " + s;
+void Image::display() {
+    cout << "Displaying image " << endl;
 }
 
+void Png::display() {
+    cout << "Displaying png " << endl;
+}
 
+void Jpeg::display(){
+    cout << "Displaying jpeg "  << endl;
+}
+
+void Gif::display(){
+    cout << "Displaying gif " << endl;
+}
 
 double WReading::get_tempF() {
     return (temperature * C_TO_F) + 32;
     
+}
+
+void WReading::display_image(){
+    if(!image){
+        cout << "null" << endl;
+    }
+    else{
+        image->display();
+
+    }
 }
 /*
  * output for GPS coordinates
@@ -80,13 +101,13 @@ ostream& operator<<(ostream& os, const GPS& gps){
 }
 
 
-WReading::WReading(Date dt, double temp, double hum, double ws) :
-date(dt), temperature(temp), humidity(hum), windspeed(ws)
+WReading::WReading(Date dt, double temp, double hum, double ws, Image* img = nullptr) :
+date(dt), temperature(temp), humidity(hum), windspeed(ws), image(img)
 {
 }
 ostream& operator<<(ostream& os, const WReading& wreading){
     os <<"Date: " << wreading.date << ", temperature: "<< wreading.temperature << ", humidity: "
-    << wreading.humidity << ", windspeed: " << wreading.windspeed;
+    << wreading.humidity << ", windspeed: " << wreading.windspeed << " image: " << wreading.image;
     return os;
 }
 /*
@@ -98,6 +119,13 @@ Weather::Weather(string nm, GPS loc) :
 string Weather::get_name() const {
     return station_nm;
 }
+
+void Weather::display_images() {
+    for(WReading wr: wreadings){
+        wr.display_image();
+    }
+}
+
 int Weather::get_rating() const{
     return rating;
     
