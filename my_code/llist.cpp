@@ -89,12 +89,8 @@ Node* reverse(Node* curr, Node* new_next){
 }
 
 Node* duplicate(Node* head) {
-    if(head) return head;
-    else{
-        Node* new_h = duplicate(new Node(head->next->data, head->next));
-        return new_h;
-        
-    }
+    if(head == nullptr) return nullptr;
+    return new Node(head->data, duplicate(head->next));
         
 }
 
