@@ -4,27 +4,27 @@
 using namespace std;
 
 void print_vector(const MyVec& v) {
-    for(int i = 0; i < v.size(); i++){
-        cout << v[i] << " ";
-    }
+    for (int i : v) cout << i << " ";
+    cout << endl;
 }
 
 
-MyVec::MyVec() {
-    sz = 0;
-    capacity = 0;
+MyVec::MyVec() : sz(0) {
+    capacity = DEF_CAPACITY;
+    data = new int[DEF_CAPACITY];
+}
+
+
+MyVec::MyVec(int sz, int val) : sz{sz} {
+    capacity = sz;
     data = new int[sz];
+    for(int i = 0; i < sz; i++){
+        data[i] = val;
+    }
 }
 
 MyVec::MyVec(const MyVec& v2) {
-    sz = v2.size();
-    capacity = sz;
-    
-    data = new int[sz];
-    
-    for(int i = 0; i < sz; i++){
-        data[i] = v2[i];
-    }
+    copy(v2);
 }
 
 MyVec::~MyVec() {
@@ -32,19 +32,20 @@ MyVec::~MyVec() {
 }
 
 MyVec& MyVec::operator=(const MyVec& v2) {
-    if(this != &v2) {
+    if (this != &v2) {
         delete [] data;
-        sz = v2.sz;
-        capacity = v2.capacity;
-        
-        data = new int[capacity];
-        
-        for(int i= 0; i < v2.size(); i++) {
-            data[i] = v2.data[i];
-        }
+        copy(v2);
     }
     return *this;
+}
 
+
+MyVec::Iterator MyVec::begin() const {
+    return data;
+}
+
+MyVec::Iterator MyVec::end() const {
+    return data + sz;
 }
 
 
@@ -65,24 +66,21 @@ bool operator==(MyVec& v1, MyVec& v2) {
 }
 
 /*
- * Puts an element at the back of a vector.n
+ * Puts an element at the back of a vector.
  * */
 void MyVec::push_back(int val) {
-    if(capacity == 0){
-        data = new int[++capacity];
-    }
-    
-    if(sz == capacity){
+    sz++;
+    if (sz > capacity) {
+        cout << "Increasing capacity\n";
         int* old_data = data;
-        data = new int[2*capacity];
-        capacity *= 2;
-        
-        for(int i = 0; i < capacity; i++){
+        data = new int[capacity * CAPACITY_MULT];
+        for (int i = 0; i < sz; i++) {
             data[i] = old_data[i];
         }
+        capacity *= CAPACITY_MULT;
         delete [] old_data;
     }
-    data[sz++] = val;
+    data[sz - 1] = val;
 }
 
 /*
@@ -100,3 +98,13 @@ int MyVec::operator[](int i) const {
 int& MyVec::operator[](int i) {
     return data[i];
 }
+
+void MyVec::copy(const MyVec& v2) {
+    sz = v2.sz;
+    capacity = v2.capacity;
+    data = new int[capacity];
+    for (int i = 0; i < sz; i++) {
+        data[i] = v2.data[i];
+    }
+}
+
