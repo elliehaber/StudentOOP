@@ -2,6 +2,7 @@
 const int DEF_CAPACITY = 10;
 const int CAPACITY_MULT = 2;
 
+
 class MyVec {
     public:
         class Iterator {

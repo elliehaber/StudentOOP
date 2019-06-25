@@ -41,11 +41,11 @@ MyVec& MyVec::operator=(const MyVec& v2) {
 
 
 MyVec::Iterator MyVec::begin() const {
-    return data;
+    return Iterator(data);
 }
 
 MyVec::Iterator MyVec::end() const {
-    return data + sz;
+    return Iterator(data + sz);
 }
 
 
