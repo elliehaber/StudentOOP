@@ -23,7 +23,7 @@ public:
         data = new T[DEF_CAPACITY];
     }
     
-    MyVec(int sz, int val) : sz(sz) {
+    MyVec(int sz, T val) : sz(sz) {
         capacity = sz;
         data = new T[sz];
         for(int i = 0; i < sz; i++){
@@ -72,7 +72,14 @@ public:
     //Iterator end() const;
     
 private:
-    void copy(const MyVec<T>& v2);
+    void copy(const MyVec<T>& v2){
+        sz = v2.sz;
+        capacity = v2.capacity;
+        data = new T[capacity];
+        for (int i = 0; i < sz; i++) {
+            data[i] = v2.data[i];
+        }
+    }
     T* data;
     int sz;
     int capacity;
@@ -80,7 +87,7 @@ private:
 
 template <typename T>
 void print_vector(const MyVec<T>& v){
-    for (int i = 0; i < v.sz; i++){
+    for (int i = 0; i < v.size(); i++){
         cout << v[i] << " ";
         cout << endl;
     }
